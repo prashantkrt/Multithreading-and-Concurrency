@@ -4,17 +4,19 @@ public class SharedResource {
 
     private boolean itemAvailable = false;
 
+    // producer add items
     public synchronized void addItem() {
         itemAvailable = true;
         System.out.println("Item added " + Thread.currentThread().getName());
         notifyAll();
     }
 
+    // consumer consume items
     public synchronized void consumeItem() {
         System.out.println("Consuming " + Thread.currentThread().getName());
 
         // if item not available keep the thread into the wait state
-        // we are using while here because as per oracle docs , "spurious wake-up" can happen so using while loop to avoid it
+        // we are using while loop here because as per oracle docs "spurious wake-up" can happen so using while loop to avoid it
         while (!itemAvailable) {
             try {
                 System.out.println("Consume method is invoked " + Thread.currentThread().getName());
