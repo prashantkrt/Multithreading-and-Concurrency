@@ -12,6 +12,7 @@ public class MainFuture2 {
 
         executor.allowCoreThreadTimeOut(true);
         List<Integer> list = new ArrayList<>();
+        // Submitting a task that works on the list and returning the list as the result
         Future<List<Integer>> future = executor.submit(new MyRunnable(list), list);
 
         try {
@@ -26,3 +27,10 @@ public class MainFuture2 {
         }
     }
 }
+
+
+//Common Variants of submit(): =>
+
+//submit(Runnable task)
+//submit(Runnable task, T result)
+//submit(Callable<T> task)
